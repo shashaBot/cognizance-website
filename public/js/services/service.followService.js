@@ -15,25 +15,5 @@ app.factory('followService', function($q){
       updates['/followers/' + newFollowerKey] = followerData;
       return firebase.database().ref().update(updates);
     };
-
-    //load followers
-    var dataRef = firebase.database().ref();
-
-    self.loadFollowers = function() {
-      var d = $q.defer();
-        var queryPosts = dataRef.child('followers');
-
-        queryPosts.on("value", function(data) {
-            self.followers = {};
-            self.followers = data;
-
-            console.log("postService::on function called: ");
-            d.resolve(self.followers);
-        });
-
-
-        return d.promise;
-    };
-
   return self;
 });

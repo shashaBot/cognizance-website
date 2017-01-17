@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Cookie');
 .logo .logo-image{
   width: 100px !important;
 }
@@ -60,6 +61,7 @@ a{
   position: relative;
   height: 500px;
   width: 100%;
+  align-content: center;
 }
 .magFrame{
   padding: 0px;
@@ -165,4 +167,66 @@ a{
 .logo-image .img-circle{
   height: 100px !important;
   width: 100px !important;
+}
+.my-table{
+  border: 0px solid black;
+  text-align: center;
+}
+.email-input-submit{
+  background: inherit;
+  border: none;
+}
+td{
+  padding: 2px 15px;
+}
+
+
+/*about us section css*/
+.item {
+  height: auto;
+  float: left;
+  padding: 0;
+  position: relative;
+  background-color: black;
+}
+
+.item:hover img {
+  opacity: 0.3;
+}
+
+.item:hover .team-quote {
+  opacity: 1;
+}
+
+.item img {
+  padding: 0;
+  width: 100%;
+  display: block;
+  opacity: 1;
+}
+
+.item img,
+.team-quote {
+  -webkit-transition: opacity 0.5s ease-out;
+  -moz-transition: opacity 0.5s ease-out;
+  -o-transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out;
+}
+
+.team-quote {
+  position: absolute;
+  color: white;
+  left: 0;
+  top: 15%;
+  right: 0;
+  bottom: 30%;
+  text-align: center;
+  opacity: 0;
+}
+.team-quote p{
+  font-size: 32px;
+  font-family: 'Cookie', cursive;
+}
+.navbar-toggle .icon-bar{
+  background: currentColor;
 }

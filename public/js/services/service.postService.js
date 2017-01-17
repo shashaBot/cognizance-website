@@ -6,22 +6,17 @@ app.factory('postService', function($state, $stateParams, $q, $timeout) {
         'loading': false,
         'page': 1
     };
-    var postsPerPage = 3;
+    var postsPerPage = 5;
     var page = 1;
-    self.newMagazinePost = function(title, body, issue, imageUrl, magLink) {
-        // A post entry.
-        var fix;
-        if (body) {
-            fix = body;
-        } else {
-            fix = "Let us know how you like it:)";
-        }
+    self.newMagazinePost = function(title, body="Let us know how you like it!", issue, magLink, pdfLink) {
+
         var postData = {
             title: title,
-            body: fix,
-            imageUrl: imageUrl,
+            body: body,
             magLink: magLink,
+            pdfLink: pdfLink,
             issue: issue,
+            type: "magazine",
             date: new Date()
         };
 
@@ -33,30 +28,49 @@ app.factory('postService', function($state, $stateParams, $q, $timeout) {
       return firebase.database().ref().update(updates);
     };
 
-    self.editPost = function(title, body, imageUrl, magLink, issue, postKey) {
-
-        // A post entry.
-        var fix;
-        if (body) {
-            fix = body;
-        } else {
-            fix = "Let us know how you like it:)";
-        }
+    self.editMagazinePost = function(title, body="Let us know how you like it!", issue, magLink, pdfLink, postKey) {
         var postData = {
-            body: fix,
+            body: body,
             title: title,
-            type: type,
             magLink: magLink,
+            pdfLink: pdfLink,
             issue: issue,
+            type: "magazine",
             date: self.selectedPost.date,
             editedDate: new Date()
         };
 
       var updates = {};
       updates['/posts/' + postKey] = postData;
-      return firebase.database().ref().set(updates);
+      return firebase.database().ref().update(updates);
     };
 
+    self.newBlogPost = function(title, body){
+      var postData = {
+        title: title,
+        body: body,
+        type: "blog",
+        date: new Date()
+      };
+
+      var updates = {};
+      var newPostKey = firebase.database().ref().child('posts').push().key;
+      updates['/posts/' + newPostKey] = postData;
+      return firebase.database().ref().update(updates);
+
+    };
+
+    self.editBlogPost = function(title, body, postKey){
+      var postData = {
+        title: title,
+        body: body,
+        type: "blog",
+        date: selectedPost.date
+      };
+      var updates = {};
+      updates['/posts/' + postKey] = postData;
+      return firebase.database().ref().update(updates);
+    };
 
     var dataRef = firebase.database().ref();
 
@@ -121,23 +135,17 @@ app.factory('postService', function($state, $stateParams, $q, $timeout) {
     };
 
     self.selectPost = function(postDate) {
-        var selectPostKey = findPostKey(postDate);
-        self.selectedPost = self.posts[selectPostKey];
+        self.selectPostKey = findPostKey(postDate);
+        self.selectedPost = self.posts[self.selectPostKey];
         return self.selectedPost;
 
     };
 
-    self.scrollToComments = function(post){
-      $state.transitionTo('read', {id: post.date}).then(function(){
-        self.selectPost(post.date);
-        let scrollTo = $('.comment-section').position();
-        $timeout(function(){
-          $("html, body").animate({ scrollTop:  scrollTo.top}, 1500);
-          //show some animation indicatin the comment area
-        }, 3000);
+    self.deletePost = function (postKey){
+      firebase.database().ref('/posts/' + postKey).remove().then(function(){
+        $state.go('home');
       });
-
-    };
+    }
 
     return self;
 });

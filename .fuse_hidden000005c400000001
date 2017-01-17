@@ -1,0 +1,56 @@
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /usr/bin/nodejs /usr/bin/firebase serve
+[debug] CLI Version:  3.0.7
+[debug] Platform:     linux
+[debug] Node Version: v4.4.7
+[debug] Time:         Fri Jan 06 2017 12:49:41 GMT+0530 (IST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: /media/shashwat/Data/coding/codebase/Angular-Projects/Cogniznace-website
+[info] Public Directory: public
+[info] 
+[info] Server listening at: http://localhost:5000
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /usr/bin/nodejs /usr/bin/firebase serve
+[debug] CLI Version:  3.0.7
+[debug] Platform:     linux
+[debug] Node Version: v4.4.7
+[debug] Time:         Sat Jan 07 2017 09:30:19 GMT+0530 (IST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: /media/shashwat/Data/coding/codebase/Angular-Projects/Cogniznace-website
+[info] Public Directory: public
+[info] 
+[info] Server listening at: http://localhost:5000
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /usr/bin/nodejs /usr/bin/firebase serve
+[debug] CLI Version:  3.0.7
+[debug] Platform:     linux
+[debug] Node Version: v4.4.7
+[debug] Time:         Sat Jan 07 2017 09:52:34 GMT+0530 (IST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: /media/shashwat/Data/coding/codebase/Angular-Projects/Cogniznace-website
+[info] Public Directory: public
+[info] 
+[info] Server listening at: http://localhost:5000
+[debug] ----------------------------------------------------------------------
+[debug] Command:      /usr/bin/nodejs /usr/bin/firebase serve
+[debug] CLI Version:  3.0.7
+[debug] Platform:     linux
+[debug] Node Version: v4.4.7
+[debug] Time:         Mon Jan 09 2017 23:32:20 GMT+0530 (IST)
+[debug] ----------------------------------------------------------------------
+[debug] 
+[info] Starting Firebase development server...
+[info] 
+[info] Project Directory: /media/shashwat/Data/coding/codebase/Angular-Projects/Cogniznace-website
+[info] Public Directory: public
+[info] 
+[info] Server listening at: http://localhost:5000

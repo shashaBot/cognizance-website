@@ -90,7 +90,7 @@
     <script src="js\controllers\controller.authCtrl.js"></script>
     <script src="js\controllers\controller.aboutCtrl.js"></script>
     <script src="js\controllers\controller.shareCtrl.js"></script>
-
+    <script src="js\controllers\controller.editCtrl.js"></script>
     <!-- back to top js -->
     <script src="js/back-top.js"></script>
     <!-- dir-disqus js -->
@@ -106,58 +106,22 @@
     <link rel="stylesheet" type="text/css" href="libs/ct-paper-theme/assets/css/ct-paper.css">
     <link rel="stylesheet" type="text/css" href="libs/ct-paper-theme/assets/css/demo.css">
     <link rel="stylesheet" type="text/css" href="libs/ct-paper-theme/assets/css/examples.css">
-    <link rel="stylesheet" href="css/bookshelf.css">
     <link rel="stylesheet" type="text/css" href="libs/angular-ui-router-anim-in-out/css/anim-in-out.css">
     <link rel="stylesheet" type="text/css" href="css/coffeePreloader.css">
     <link rel="stylesheet" type="text/css" href="css\style.css">
 
 <!-- title -->
     <title>Cognizance | The BVPIEEE E-Newsletter</title>
+
+  <!-- Meta tags -->
+    <meta name="description" content="Cognizance is the e-newletter by BVPIEEE-HKN. BVPIEEE is the student chapter at Bharati Vidyapeeth's College, New Delhi. Cognizance is a literary venture by BVPIEEE-HKN. It promotes literary and cultural awareness with technical skill development.">
+    <meta name="keywords" content="Cognizance, literary, books, Engineering, Writing, Articles, Culture, Technology, Bharati Vidyapeeth College, BVP, BVPIEEE, HKN, Lambda Eta">
   </head>
   <body>
-  <div id="coffeePreloader" class="container-fluid">
+  <!-- <div id="coffeePreloader" class="container-fluid">
 
-  </div>
+  </div> -->
   <div>
-    <!-- <nav class="navbar navbar-ct-transparent role="navigation" id="navbar-top-banner">
-      <div class="container" ng-controller="authCtrl">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#banner-navigation" >
-            <span class="sr-only"> Toggle navigation </span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="/">
-            <div class="logo-container">
-              <div class="logo">
-                <img class="logo-image" alt="Cognizance Logo" src="../img/Cognizance.png" alt="Cognizance Logo">
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="collapse navbar-collapse" id="banner-navigation">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <button class="btn btn-fill dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" ng-show="user">
-                Admin
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                <li role="presentation"><a role="menuitem" tabindex="-1" ui-sref="add">Add Post</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Edit Post</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Delete Post</a></li>
-                <li role="presentation" class="divider"></li>
-                <li role="presentation" ng-click="signOut()"><a role="menuitem" tabindex="-1" href="#" >Sign Out</a></li>
-              </ul>
-            </li>
-           </li>
-            <li><button class="btn btn-neutral btn-simple" ui-sref="about">Who Are We?</button></li>
-            <li><button class="btn btn-neutral btn-simple ">Follow us</button></li>
-          </ul>
-        </div>
-      </div>
-    </nav> -->
 
     <nav class="navbar navbar-ct-transparent" role="navigation-demo" id="demo-navbar">
       <div class="container">
@@ -169,12 +133,12 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="https://cognizance-dc325.firebaseapp.com">
-               <div class="logo-container">
-                    <div class="logo">
-                        <img class="logo-image img-circle" src="img/Cognizance.png" alt="Cognizance Logo">
-                    </div>
-                </div>
+          <a ui-sref="home">
+           <div class="logo-container">
+              <div class="logo">
+                  <img class="logo-image" src="img/Cognizance.png" alt="Cognizance Logo">
+              </div>
+            </div>
           </a>
         </div>
 
@@ -182,14 +146,13 @@
         <div class="collapse navbar-collapse" id="navigation-example-2">
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown" ng-show="user">
-              <button class="btn btn-fill btn-neutral dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+              <a class="btn btn-fill btn-neutral dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
                 Admin
                 <span class="caret"></span>
-              </button>
+              </a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 <li role="presentation"><a role="menuitem" tabindex="-1" ui-sref="add">Add Post</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Edit Post</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Delete Post</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" ui-sref="followers">Followers</a></li>
                 <li role="presentation" class="divider"></li>
                 <li role="presentation" ng-click="signOut()"><a role="menuitem" tabindex="-1" href="#" >Sign Out</a></li>
               </ul>
@@ -197,8 +160,8 @@
               <li>
                 <a ui-sref="about" class="btn btn-fill btn-neutral">Meet the team</a>
               </li>
-              <li>
-                <a ui-sref="" class="btn btn-fill btn-neutral">Follow us</a>
+              <li ng-controller="postCtrl">
+                <a ng-click="scrollToFollowSection()" class="btn btn-fill btn-neutral">Follow us</a>
               </li>
            </ul>
         </div><!-- /.navbar-collapse -->
@@ -206,18 +169,9 @@
     </nav>
 
 
-
-
-
-
-
-
-
-
-
     <!-- home page -->
     <div class="container-fluid">
-      <div ui-view class="anim-in-out anim-fade" autoscroll="true"></div>
+      <div ui-view class="anim-in-out anim-fade" autoscroll="false"></div>
     </div>
     <!-- footer -->
     <footer class="footer-demo section-dark">
@@ -226,7 +180,7 @@
                 <ul class="pull-left">
 
                     <li>
-                        <a href="https://cognizance-dc325.firebaseapp.com">
+                        <a ui-sref="home">
                             Cognizance
                         </a>
                     </li>
@@ -235,16 +189,10 @@
                            Meet the team
                         </a>
                     </li>
-                    <li>
-                        <a data-target="#feedback-modal">
-                            Feedback
-                        </a>
-                    </li>
                 </ul>
             <ul class="pull-right">
                 <li><a href="https://www.facebook.com/bvpcognizance" class="btn btn-simple"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="https://plus.google.com" class="btn btn-simple"><i class="fa fa-google-plus-official"></i></a></li>
-                <li><a href="https://www.twitter.com" class="btn btn-simple"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.instagram.com/bvpcognizance" class="btn btn-simple"><i class="fa fa-instagram"></i></a></li>
             </ul>
           </nav>
         </div>

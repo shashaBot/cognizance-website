@@ -60,6 +60,14 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
           url: '/about-us',
           templateUrl: 'templates/about-us.html',
           controller: 'aboutCtrl'
+        })
+        .state('edit', {
+          url: '/edit/:id',
+          templateUrl: 'templates/edit.html',
+          controller: 'editCtrl',
+          data: {
+            needAdmin: true
+          }
         });
 
     $urlRouterProvider.otherwise('/');

@@ -1,23 +1,42 @@
-<div class="section section-nude landing-section" id="scrollToSection" ng-hide="loading">
-  <div class="container tim-container" ng-show="!loading">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-12">
-          <div class="card radius">
-            <div>
-                <iframe id="i_frame" ng-src="{{selectedPost.magLink}}" frameborder="0" allowfullscreen="true" allowtransparency="true"></iframe>
-            </div>
-            <div class="card__content card__padding">
-              <div class="card__meta">
-                <!-- <a href="#">{{post.theme}}</a> -->
-                <span><i class="fa fa-calendar" aria-hidden="true"></i></span><time>{{selectedPost.issue}}</time>
-              </div>
-              <article class="card__article">
-                <h2><a href="#">{{selectedPost.title}}</a></h2>
-                <p class="post-body">{{selectedPost.body}}</p>
-                <p ng-if="user" text-angular ng-model="selectedPost.body" ta-toolbar-class="btn-toolbar" ta-toolbar-group-class="btn-group" ta-toolbar-button-class="btn btn-default" ta-toolbar-active-button-class="active" class="post-body" >{{selectedPost.body}}</p>
-              </article>
-            </div>
-          </div>
+<div class="section section-nude" style="background:antiquewhite" id="scrollToSection" ng-hide="loading">
+  <div class="container">
+    <h2 class="post-title">{{selectedPost.title}}</h2>
+    <p>
+      <i class="fa fa-calendar" aria-hidden="true"></i>
+      <time ng-if="selectedPost.type=='magazine'">{{selectedPost.issue}}</time>
+      <time ng-if="selectedPost.type=='blog'">{{selectedPost.date | date}}</time>
+    </p>
+
+    <div ng-controller="shareCtrl">
+      <h6>Share:</h6>
+      <span><a class="btn btn-sm social-btn social-fb" ng-click="fbShare(selectedPost)"><i class="fa fa-facebook-f"></i></a></span>
+      <span><a class="btn btn-sm social-btn social-gp" ng-click="gpShare(selectedPost)"><i class="fa fa-google-plus"></i></a></span>
+      <span><a class="btn btn-sm social-btn social-tw" ng-click="twShare(selectedPost)"><i class="fa fa-twitter"></i></a></span>
+      <span><a class="btn btn-sm social-btn social-pk" ng-click="pkShare(selectedPost)"><i class="fa fa-get-pocket"></i></a></span>
+
+      <span><em>Or <button class="btn btn-simple" ng-click="goToComments()">leave a comment</button></em></span>
+      <span class="pull-right"><a class="btn btn-sm btn-danger btn-fill" ng-href="{{selectedPost.pdfLink}}" ng-if="selectedPost.type==='magazine'">Download PDF</a></span>
+    </div><br>
+  </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-sm-12 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+      <div ng-if="selectedPost.type == 'magazine'">
+          <iframe id="i_frame" ng-src="{{selectedPost.magLink}}" frameborder="0" allowfullscreen="true" allowtransparency="true"></iframe>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <br>
+    <p class="post-body">{{selectedPost.body}}</p><br>
+    <p>Link: <a ng-href="{{selectedPost.pdfLink}}">{{selectedPost.pdfLink}}</a></p>
+  </div>
+  <br><br>
+  <div class="row" ng-if="user">
+    <div class="container">
+      <div class="btn-group">
+        <button class="btn btn-fill btn-small btn-neutral" ui-sref="edit({id:selectedPost.date})">Edit</button>
+        <button class="btn btn-fill btn-small btn-danger" ng-click="deletePost(selectedPostKey)">Delete</button>
+
       </div>
     </div>
   </div>
@@ -28,7 +47,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="tim-title">
-          <h4>Leave a comment:</h4>
+          <h4>Tell us what you think:</h4>
         </div>
       </div>
     </div>
