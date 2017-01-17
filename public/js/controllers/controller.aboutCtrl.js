@@ -4,10 +4,12 @@ app.controller('aboutCtrl', function($scope){
   $(document).ready(function() {
 
     $("#cogniOwlCarousel").owlCarousel({
+      autoPlay: 5300, //Set AutoPlay to 3 seconds
       items : 4,
-      itemsDesktop : [1199,4],
-      itemsDesktopSmall : [979,4],
-      lazyLoad: true
+      itemsDesktop : [1199,3],
+      itemsDesktopSmall : [979,3],
+      lazyLoad: true,
+      jsonPath : "json/cogniData1.json"
     });
 
   });
