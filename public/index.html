@@ -58,18 +58,24 @@
 <!-- ng-file-upload js -->
     <script src="libs/ng-file-upload/ng-file-upload.min.js"></script>
 <!-- owl carousel -->
-    <!-- Basic stylesheet -->
+    <!-- Basic owlCarousel stylesheet -->
     <link rel="stylesheet" href="libs/OwlCarousel/owl-carousel/owl.carousel.css">
 
-     <!-- Default Theme -->
+     <!-- Default owlCarousel Theme -->
     <link rel="stylesheet" href="libs/OwlCarousel/owl-carousel/owl.theme.css">
 
-    <!-- Include js plugin -->
+    <!-- Include owl carousel js plugin -->
     <script src="libs/OwlCarousel/owl-carousel/owl.carousel.js"></script>
 
 <!-- social share plugin js -->
     <script src="libs/angular-socialshare/dist/angular-socialshare.min.js"></script>
+<!-- angular animate js -->
+    <script src="libs/angular-animate/angular-animate.min.js"></script>
 
+    <!-- angular in out animate ui router js -->
+    <script type="text/javascript" src="libs/angular-ui-router-anim-in-out/anim-in-out.js">
+
+    </script>
 <!-- main javascript files -->
     <script src="js\app.js"></script>
     <script src="js\services.js"></script>
@@ -84,7 +90,7 @@
     <script src="js\controllers\controller.authCtrl.js"></script>
     <script src="js\controllers\controller.aboutCtrl.js"></script>
     <script src="js\controllers\controller.shareCtrl.js"></script>
-
+    <script src="js\controllers\controller.editCtrl.js"></script>
     <!-- back to top js -->
     <script src="js/back-top.js"></script>
     <!-- dir-disqus js -->
@@ -100,77 +106,72 @@
     <link rel="stylesheet" type="text/css" href="libs/ct-paper-theme/assets/css/ct-paper.css">
     <link rel="stylesheet" type="text/css" href="libs/ct-paper-theme/assets/css/demo.css">
     <link rel="stylesheet" type="text/css" href="libs/ct-paper-theme/assets/css/examples.css">
-    <link rel="stylesheet" href="css/bookshelf.css">
+    <link rel="stylesheet" type="text/css" href="libs/angular-ui-router-anim-in-out/css/anim-in-out.css">
+    <link rel="stylesheet" type="text/css" href="css/coffeePreloader.css">
     <link rel="stylesheet" type="text/css" href="css\style.css">
-    <link rel="stylesheet" type="text/css" href="css/back-top.css">
-    <link rel="sylesheet" type="text/css" href="css/cogniCarousel.css">
 
 <!-- title -->
     <title>Cognizance | The BVPIEEE E-Newsletter</title>
+
+  <!-- Meta tags -->
+    <meta name="description" content="Cognizance is the e-newletter by BVPIEEE-HKN. BVPIEEE is the student chapter at Bharati Vidyapeeth's College, New Delhi. Cognizance is a literary venture by BVPIEEE-HKN. It promotes literary and cultural awareness with technical skill development.">
+    <meta name="keywords" content="Cognizance, literary, books, Engineering, Writing, Articles, Culture, Technology, Bharati Vidyapeeth College, BVP, BVPIEEE, HKN, Lambda Eta">
   </head>
   <body>
+  <!-- <div id="coffeePreloader" class="container-fluid">
 
+  </div> -->
+  <div>
 
-
-
-    <div class="container-fluid" id="bookshelfBack" ng-show="false">
-    <div class="bookshelf_wrapper" >
-      <ul class="books_list">
-        <li class="book_item first"></li>
-        <li class="book_item second"></li>
-        <li class="book_item third"></li>
-        <li class="book_item fourth"></li>
-        <li class="book_item fifth"></li>
-        <li class="book_item sixth"></li>
-      </ul>
-      <div class="shelf"></div>
-    </div>
-  </div>
-  <div ng-show="true">
-    <nav class="navbar navbar-ct-transparent navbar-fixed-top" role="navigation" id="navbar-top-banner" ng-cloak>
-      <div class="container" ng-controller="authCtrl">
+    <nav class="navbar navbar-ct-transparent" role="navigation-demo" id="demo-navbar">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#banner-navigation" >
-            <span class="sr-only"> Toggle navigation </span>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+            <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a href="/">
-            <div class="logo-container">
+          <a ui-sref="home">
+           <div class="logo-container">
               <div class="logo">
-                <img class="logo-image" alt="Cognizance Logo" src="../img/Cognizance.png" alt="Cognizance Logo">
+                  <img class="logo-image" src="img/Cognizance.png" alt="Cognizance Logo">
               </div>
             </div>
           </a>
         </div>
-        <div class="collapse navbar-collapse" id="banner-navigation">
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navigation-example-2">
           <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <button class="btn btn-fill dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" ng-show="user">
+            <li class="dropdown" ng-show="user">
+              <a class="btn btn-fill btn-neutral dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
                 Admin
                 <span class="caret"></span>
-              </button>
+              </a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                 <li role="presentation"><a role="menuitem" tabindex="-1" ui-sref="add">Add Post</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Edit Post</a></li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Delete Post</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" ui-sref="followers">Followers</a></li>
                 <li role="presentation" class="divider"></li>
                 <li role="presentation" ng-click="signOut()"><a role="menuitem" tabindex="-1" href="#" >Sign Out</a></li>
               </ul>
             </li>
-           </li>
-            <li><button class="btn btn-primary btn-simple" ui-sref="about">Who Are We?</button></li>
-            <!-- open up a modal to like us on facebook and follow on twitter -->
-            <li><button class="btn btn-primary btn-simple">Follow us</button></li>
-          </ul>
-        </div>
-      </div>
+              <li>
+                <a ui-sref="about" class="btn btn-fill btn-neutral">Meet the team</a>
+              </li>
+              <li ng-controller="postCtrl">
+                <a ng-click="scrollToFollowSection()" class="btn btn-fill btn-neutral">Follow us</a>
+              </li>
+           </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-->
     </nav>
-    <!-- home page -->
 
+
+    <!-- home page -->
     <div class="container-fluid">
-      <div ui-view autoscroll="true"></div>
+      <div ui-view class="anim-in-out anim-fade" autoscroll="false"></div>
     </div>
     <!-- footer -->
     <footer class="footer-demo section-dark">
@@ -179,25 +180,19 @@
                 <ul class="pull-left">
 
                     <li>
-                        <a href="https://cognizance-dc325.firebaseapp.com">
+                        <a ui-sref="home">
                             Cognizance
                         </a>
                     </li>
                     <li>
-                        <a ng-href="#/about-us">
+                        <a ui-sref="about">
                            Meet the team
-                        </a>
-                    </li>
-                    <li>
-                        <a data-target="#feedback-modal">
-                            Feedback
                         </a>
                     </li>
                 </ul>
             <ul class="pull-right">
                 <li><a href="https://www.facebook.com/bvpcognizance" class="btn btn-simple"><i class="fa fa-facebook"></i></a></li>
-                <li><a href="https://plus.google.com" class="btn btn-simple"><i class="fa fa-google-plus-official"></i></a></li>
-                <li><a href="https://www.twitter.com" class="btn btn-simple"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.instagram.com/bvpcognizance" class="btn btn-simple"><i class="fa fa-instagram"></i></a></li>
             </ul>
           </nav>
         </div>

@@ -1,21 +1,12 @@
-<div id="cogniCarousel">
-  <div id="carousel-cognizance-presentation" class="carousel slide carousel-fade" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#carousel-cognizance-presentation" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel-cognizance-presentation" data-slide-to="1" ></li>
-      <li data-target="#carousel-cognizance-presentation" data-slide-to="2" ></li>
-    </ol>
-    <div class="carousel-inner">
-      <div class="item active"><img class="carousel-image" src="img/cogni-website-images1.jpg"></div>
-      <div class="item"><img class="carousel-image" src="img/cogni-website-images2.jpg"></div>
-      <div class="item"><img class="carousel-image" src="img/cogni-website-images3.jpg"></div>
-    </div>
-    <a class="left carousel-control" data-target="#carousel-cognizance-presentation" data-slide="prev">
-      <span class="fa fa-angle-left"></span>
-    </a>
-    <a class="right carousel-control" data-target="#carousel-cognizance-presentation" data-slide="next">
-      <span class="fa fa-angle-right"></span>
-    </a>
+<div class="demo-header demo-header-image">
+  <div class="motto">
+    <h1 class="title-uppercase">Cognizance</h1>
+    <h3>A literary venture by BVPIEEE-HKN</h3>
+  </div>
+  <div class="goToPosts text-center">
+    <button btn class="btn btn-fill btn-neutral btn-lg" ng-click="backToTop();">
+      Read Us
+    </button>
   </div>
 </div>
 <div class="section section-nude landing-section" id="scrollToSection">
@@ -26,36 +17,36 @@
       </p>
     </div>
     <div class="row">
-      <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+      <div class="col-md-12">
         <div masonry="{transitionDuration: '0.8s'}" reload-on-resize preserve-order>
           <div class="row">
             <div class="masonry-brick col-md-4 col-sm-6 col-xs-12" ng-repeat="post in posts">
               <div class="card radius">
-                <div class="card__image">
-                  <img ng-src="{{post.imageUrl}}" alt="image" class="post-image img-rounded img-responsive noshadow">
-                </div>
+                <!-- will use this card image div when i make code for image upload and use them well -->
+                <!-- <div class="card__image" ng-if="false">
+                  <img  ng-src="{{post.imageUrl}}" alt="image" class="post-image img-rounded img-responsive noshadow">
+                </div> -->
 
                 <div class="card__content card__padding">
                   <div class="card__meta">
-                    <a href="#">{{post.theme}}</a>
-                    <span><i class="fa fa-calendar" aria-hidden="true"></i></span><time>{{post.issue}}</time>
+                    <span><i class="fa fa-calendar" aria-hidden="true"></i></span>
+                    <time ng-if="post.type=='magazine'">{{post.issue}}</time>
+                    <time ng-if="post.type=='blog'">{{post.date | date}}</time>
                   </div>
                   <article class="card__article">
-                    <h2>{{post.title}}</h2>
-
+                    <button class="btn btn-simple" ui-sref="read({id: post.date})"><h4 class="post-title" >{{post.title}}</h4></button>
                     <p class="post-body" ng-init="showPostHome=((post.body).length>500? post.body.substr(0,400)+'...': post.body)">{{showPostHome}}</p>
                   </article>
                   <div>
                     <span><button class="btn btn-fill btn-sm" ui-sref="read({id:post.date})">Read</button></span>
-                    <span><button class="btn btn-danger btn-fill btn-sm" ng-click="goToComments(post);">Comment</button></span>
+                    <span ng-if="post.type=='magazine'"><a class="btn btn-danger btn-fill btn-sm" ng-href="{{post.pdfLink}}">Download PDF</button></a>
                   </div>
                   <hr style="border-color: #66615b;">
                   <div ng-controller="shareCtrl">
-                  <h6>Share this:</h6>
+                    <h6>Share this:</h6>
                     <span><a class="btn btn-sm social-btn social-fb" ng-click="fbShare(post)"><i class="fa fa-facebook-f"></i></a></span>
                     <span><a class="btn btn-sm social-btn social-gp" ng-click="gpShare(post)"><i class="fa fa-google-plus"></i></a></span>
                     <span><a class="btn btn-sm social-btn social-pk" ng-click="pkShare(post)"><i class="fa fa-get-pocket"></i></a></span>
-                    <span><a class="btn btn-sm social-btn social-ws" ng-click="wsShare(post)"><i class="fa fa-whatsapp"></i></a></span>
                     <span><a class="btn btn-sm social-btn social-tw" ng-click="twShare(post)"><i class="fa fa-twitter"></i></a></span>
                   </div>
                 </div>
@@ -72,14 +63,44 @@
   </div>
   <br>
 </div>
-<div class="section section-dark-blue" align="center" ng-controller="followCtrl">
+<div class="section section-dark-blue" id="followSection" align="center" ng-controller="followCtrl">
   <h2>Never miss an Issue.<br/>
-    <p>Enter your email below and we will send the link to your mailbox each month.</p>
+    <p>Enter your email below and press 'Enter' and we will send the link to your mailbox each month.</p>
   </h2>
   <div class="input-group text-center">
     <span class="input-group-addon"><i class="fa fa-envelope fa-2x"></i></span>
     <input type="email" name="email-input" placeholder="you@example.com" class="form-control follow-input" ng-model="followerEmail">
   </div>
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 col-xs-12 col-sm-12">
+      <div class="row">
+        <div class="col-md-4">
+          <h3>Find us on Facebook</h3>
+          <p>
+            <a  style="color: white" href="https://www.facebook.com/bvpcognizance"><i class="fa fa-facebook-official fa-2x" aria-hidden="true"></i></a>
+            <a style="color: white" href="https://www.facebook.com/bvpcognizance"><p class="text-muted">@bvpcognizance</p></a>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h3>Follow us on Instagram</h3>
+          <p>
+            <a style="color: white" href="https://www.instagram.com/bvpcognizance"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+            <a style="color: white" href="https://www.instagram.com/bvpcognizance"><p class="text-muted">@bvpcognizance</p></a>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <h3>Send us your thoughts</h3>
+          <p>
+            <i class="fa fa-envelope fa-2x" aria-hidden="true"></i></a>
+            <form action="mailto:cognizancenews@gmail.com" enctype="text/plain" method="post">
+              <input type="submit" class="email-input-submit btn btn-fill btn-sm btn-neutral" value="Fire off an email!">
+            </form>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <div class="section section-dark text-center landing-section">
@@ -88,29 +109,36 @@
         <div class="col-md-4">
             <div class="team-player">
                 <img src="img/CogniTeamPhotos/DeepanshuKapoor1.jpg" alt="Thumbnail Image" class="img-circle img-responsive">
-                <h5>Deepanshu Kapoor <br><small class="text-muted">Editor-in-Chief</small></h5>
-                <p>You can write here details about one of your team members. You can give more details about what they do. Feel free to add some <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                <h5>Deepanshu Kapoor<br><small class="text-muted">Editor-in-Chief</small></h5>
+                <p>
+                  <a style="color: currentColor" href="https://facebook.com/Ychoclate?ref=bookmarks"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                  <a href="https://github.com/shashwat2519"><i class="fa fa-github-alt" aria-hidden="true"></i></a>
+                </p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="team-player">
                 <img src="img/CogniTeamPhotos/KanikaSharma.jpg" alt="Thumbnail Image" class="img-circle img-responsive">
                 <h5>Kanika Sharma <br><small class="text-muted">Mentor, Editorial</small></h5>
-                <p>You can write here details about one of your team members. You can give more details about what they do. Feel free to add some <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                <p>
+                  <a style="color: currentColor" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                </p>
             </div>
         </div>
         <div class="col-md-4">
             <div class="team-player">
                 <img src="img/CogniTeamPhotos/SanyamGoel.jpg" alt="Thumbnail Image" class="img-circle img-circle img-responsive">
                 <h5>Sanyam Goel <br><small class="text-muted">Mentor, Web Team</small></h5>
-                <p>You can write here details about one of your team members. You can give more details about what they do. Feel free to add some <a href="#">links</a> for people to be able to follow them outside the site.</p>
+                <p>
+                  <a style="color: currentColor" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                </p>
             </div>
         </div>
     </div>
     <br>
     <div class="container">
       <div class="text-center">
-        <a ng-href="#/about-us" class="btn btn-primary btn-simple"><h5>Meet the rest <i class="fa fa-chevron-right"></i></h5></a>
+        <a ng-href="#/about-us" class="btn btn-neutral btn-simple"><h5>Meet the rest <i class="fa fa-chevron-right"></i></h5></a>
       </div>
     </div>
 </div>

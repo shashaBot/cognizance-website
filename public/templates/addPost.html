@@ -1,95 +1,54 @@
-<div class="section landing-section section-with space">
-<div class="container">
-	<div class="row">
-		<div class="col-md-8 col-md-offset-2">
-			<div class="tim-title"><h3 class="text-center">Add Post</h3></div>
-
-				<form name="addPostForm" role="form" ng-submit="writeNewPost(addPostForm.$valid)" novalidate="novalidate">
-					<div class="row">
-						<div class="col-md-12">
-							<label for="post_title">Post Title</label>
-							<input type="text" placeholder="New Issue Maybe" id="post_title" ng-model="newPost.title" class="form-control" ng-required="true" />
-						</div>
+<div class="section section-light-blue ">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="tim-title">
+					<h3 class="text-center">Add Post</h3>
+				</div>
+				<form name="addPostForm" role="form" ng-submit="writeNewPost(addPostForm, newPost.type)" novalidate="novalidate">
+					<div class="form-group">
+						<label for="post_type">Post type:</label> <br>
+						<input type="radio" name="post_type" value="magazine" ng-model="newPost.type">Magazine Issue<br>
+						<input type="radio" name="post_type" value="blog" ng-model="newPost.type">Blog post
 					</div>
-					<div class="row">
-						<div class="col-md-12">
-							<label for="post_content">Post Content:</label>
-							<textarea ng-model="newPost.body" id="post_content" placeholder="Add the body of post here..." class="form-control" rows="3"></textarea>
-						</div>
+					<div class="form-group">
+						<label for="post_title">Post Title</label>
+						<input type="text" name="post_title" placeholder="New Issue Maybe" id="post_title" ng-model="newPost.title" class="form-control" ng-required="true" />
 					</div>
-						<!-- <div class="form-group">
-							Post Type:
-							<div class="radio">
-							  <label><input type="radio" name="optradio" value="magazine" ng-model="newPost.type"><i></i>Magazine</label>
-							</div>
-							<div class="radio">
-							  <label><input type="radio" name="optradio" value="blog" ng-model="newPost.type"><i></i>Blog</label>
-							</div>
+					<div class="form-group">
+						<label for="post_content">Post Content</label>
+						<textarea ng-model="newPost.body" name="post_content" id="post_content" placeholder="Add the body of post here..." class="form-control" rows="3"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="issue">Issue</label><br>
+						<select form="addPostForm" class="form-control" name="issue_month" ng-required="newPost.type=='magazine'" ng-disabled="newPost.type!='magazine'" ng-model="newPost.issueMonth" >
+							<option ng-repeat="month in months" value="{{month}}">{{month}}</option>
+						</select> <br>
+						<select form="addPostForm" class="form-control" name="issue_year" ng-required="newPost.type=='magazine'" ng-disabled="newPost.type!='magazine'" ng-model="newPost.issueYear">
+							<option ng-repeat="year in years" value="{{year}}">{{year}}</option>
+						</select>
+					</div>
 
-							<div class="radio">
-								<label >
-									<input type="radio" name="postOptions" data-toggle="radio" id="postTypeRadios1" value="magazine" ng-model="newPost.type" checked="true">
-									<i></i>Magazine
-								</label>
-							</div>
-							<div class="radio">
-								<label >
-									<input type="radio" name="postOptions" data-toggle="radio" id="postTypeRadios2" value="blog"  ng-model="newPost.type">
-									<i></i>Blog
-								</label>
-							</div>
-							<pre>{{newPost}}</pre>
-						</div> -->
-						<!--Was trying to use select input of paperkit  -->
-						<!-- <button type="button" class="btn dropdown-toggle no-style form-control" data-toggle="dropdown" title="Choose Month" aria-expanded="false">
-							<span class="filter-option pull-left">Choose Month</span>
-							"nbsp;"
-							<span class="bs-caret">
-								<span class="caret"></span>
-							</span>
-						</button>
-						<div class="dropdown-menu open" style="max-height: 288px; overflow: hidden; min-height: 125px;" -->
-						<div class="row">
-							<div class="col-md-12">
-								<label for="issueMonth">Issue:</label><br>
-								<input type="month" ng-model="newPost.issue"></input>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12">
-								<!-- upload image ng-file-upload maybe-->
-								<label for="imageUrl">Image URL: </label>
-								<span><input type="file" id="imageUrl" class="form-control" ng-model="newPost.imageUrl"></span>
-								<span><button class="btn btn-simple btn-success">Upload</button></span>
-							</div>
-						</div>
-
-						<div class="row">
-							<div class="col-md-12">
-								<label for="mag_link">Magazine Link:</label>
-								<input type="url" id="mag_link" ng-model="newPost.magLink" class="form-control" ng-required="true"/>
-							</div>
-						</div>
-
-
-
-					<div class="row">
-
-						<div class="col-md-12">
-
-				            <div class="btn-group btn-group-justified">
-				                <div class="btn-group">
-				                    <button ui-sref="home" class="btn btn-lg btn-default btn-fill">Cancel</button>
-				                </div>
-				                <div class="btn-group">
-				                    <button type="submit" class="btn btn-lg btn-success btn-fill ">Post</button>
-				                </div>
-				            </div>
-
-				        </div>
+					<div class="form-group">
+						<label for="mag_link">Magazine Link:</label>
+						<input type="url" name="mag_link" id="mag_link" ng-model="newPost.magLink" ng-disabled="newPost.type!='magazine'" ng-required="newPost.type=='magazine'" class="form-control" />
+					</div>
+					<div class="form-group">
+						<label for="mag_pdf">Magazine PDF Link:</label>
+						<input type="url" name="mag_pdf" id="mag_pdf" ng-model="newPost.pdfLink" ng-disabled="newPost.type!='magazine'" ng-required="newPost.type=='magazine'" class="form-control" />
+					</div>
+					<div class="form-group">
+            <div class="btn-group btn-group-justified">
+              <div class="btn-group">
+                  <button type="reset" class="btn btn-lg btn-default btn-fill">Cancel</button>
+              </div>
+              <div class="btn-group">
+                  <button type="submit" class="btn btn-lg btn-success btn-fill">Add</button>
+              </div>
+            </div>
 					</div>
 				</form>
+			</div>
 		</div>
 	</div>
-</div>
 </div>

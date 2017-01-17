@@ -1,6 +1,7 @@
 var app = angular.module('CogniApp',
 [
   'firebase',
+  'ngAnimate',
   'ui.router',
   'CogniApp.services',
   'CogniApp.controllers',
@@ -8,7 +9,8 @@ var app = angular.module('CogniApp',
   'textAngular',
   'wu.masonry',
   'angularUtils.directives.dirDisqus',
-  '720kb.socialshare'
+  '720kb.socialshare',
+  'anim-in-out'
 ]);
 // crossdomain loading iframes
 app.config(function($sceDelegateProvider) {
@@ -58,6 +60,14 @@ app.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
           url: '/about-us',
           templateUrl: 'templates/about-us.html',
           controller: 'aboutCtrl'
+        })
+        .state('edit', {
+          url: '/edit/:id',
+          templateUrl: 'templates/edit.html',
+          controller: 'editCtrl',
+          data: {
+            needAdmin: true
+          }
         });
 
     $urlRouterProvider.otherwise('/');
@@ -83,7 +93,7 @@ app.run(function($rootScope, $state){
     if(to.data.needAdmin && !$rootScope.user){
       e.preventDefault();
       console.log('prevented the collapse of my world');
-      //maybe show a dialog like you snooping slimy bitch types
+      //maybe show a dialog like 'you snooping bitch'
       $state.go('home');
     }
     else if (to.data.needAdmin && $rootScope.user){
@@ -92,6 +102,19 @@ app.run(function($rootScope, $state){
     else{
       console.log("I don't give two shits!");
     }
+  });
+  //manage variables on animation start and animation end
+  $rootScope.showPreloader = true;
+  $rootScope.$on('animStart', function($event, element, speed) {
+      // do something
+      $rootScope.showPreloader = true;
+      $("footer").hide();
+  });
+
+  $rootScope.$on('animEnd', function($event, element, speed) {
+      // do something
+      $rootScope.showPreloader = false;
+      $("footer").show();
   });
 
 });

@@ -5,9 +5,11 @@ app.controller('shareCtrl', function($scope, Socialshare){
     Socialshare.share({
      'provider': 'facebook',
      'attrs': {
-       'socialshareUrl': 'https://cognizance-dc325.firebaseapp.com/read/' + post.date,
-       'socialshare-via': '1576264192675940',
-       'socialshare-description': 'Check out this post by \'Cognizance: The BVPIEEE-HKN e-newsletter\'. It\'s amazing. And other stuff here.'
+       'socialshareUrl': 'https://cognizance-dc325.firebaseapp.com/#/read/' + post.date,
+       'socialshareVia': '1576264192675940',
+       'socialshareTitle': post.title + ' | ' + post.issue,
+       'socialshareText': 'Check out this post by \'Cognizance: The BVPIEEE-HKN e-newsletter\'.',
+       'socialshareHashtags': 'Cognizance, ' + post.issue + ', BVPIEEE-HKN'
       }
     });
   };
@@ -16,7 +18,7 @@ app.controller('shareCtrl', function($scope, Socialshare){
     Socialshare.share({
      'provider': 'google',
      'attrs': {
-     'socialshareUrl': 'https://cognizance-dc325.firebaseapp.com/read/' + post.date
+     'socialshareUrl': 'https://cognizance-dc325.firebaseapp.com/#/read/' + post.date
       }
     });
   };
@@ -25,7 +27,8 @@ app.controller('shareCtrl', function($scope, Socialshare){
     Socialshare.share({
      'provider': 'pocket',
      'attrs': {
-     'socialshareUrl': 'https://cognizance-dc325.firebaseapp.com/read/' + post.date
+     'socialshareUrl': 'https://cognizance-dc325.firebaseapp.com/#/read/' + post.date,
+     'socialshareText': 'Check out this post by \'Cognizance: The BVPIEEE-HKN e-newsletter\' ... '+ post.title + ' | ' + post.issue
       }
     });
   };
@@ -34,7 +37,9 @@ app.controller('shareCtrl', function($scope, Socialshare){
     Socialshare.share({
      'provider': 'whatsapp',
      'attrs': {
-     'socialshareUrl': 'https://cognizance-dc325.firebaseapp.com/read/' + post.date
+     'socialshareUrl': 'https://cognizance-dc325.firebaseapp.com/#/read/' + post.date,
+     'socialshareTitle': post.title + ' | ' + post.issue,
+     'socialshareText': 'Check out this post by \'Cognizance: The BVPIEEE-HKN e-newsletter\'.'
       }
     });
   };
@@ -43,8 +48,10 @@ app.controller('shareCtrl', function($scope, Socialshare){
     Socialshare.share({
      'provider': 'twitter',
      'attrs': {
-       'socialshareUrl': 'https://cognizance-dc325.firebaseapp.com/read/' + post.date,
-       'socialshareHashtags': 'Cognizance, ' + post.issue + ', BVPIEEE-HKN' //take care of this post.issue thingy when you get to know about it
+       'socialshareUrl': 'https://cognizance-dc325.firebaseapp.com/#/read/' + post.date,
+       'socialshareHashtags': 'Cognizance, ' + post.issue + ', BVPIEEE-HKN',
+       'socialshareTitle': post.title + ' | ' + post.issue,
+       'socialshareText': 'Check out this post by \'Cognizance: The BVPIEEE-HKN e-newsletter\'.'
       }
     });
   };

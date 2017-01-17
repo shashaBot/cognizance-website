@@ -1,9 +1,7 @@
 var app = angular.module('controller.postCtrl', []);
 
 app.controller('postCtrl', function($scope, Socialshare, postService, $location, $rootScope, $anchorScroll, $location, authService, $state) {
-    $scope.goToComments = function(post){
-      postService.scrollToComments(post);
-    };
+
 
     $scope.loading = false;
 
@@ -56,6 +54,13 @@ app.controller('postCtrl', function($scope, Socialshare, postService, $location,
     };
     $scope.load();
 
+    for(var key in $scope.posts){
+      if($scope.posts[key].type === 'blog'){
+        var blogDate = new Date($scope.posts[key].date);
+        $scope.posts[key].dateBlog = blogDate.toDateString();
+        console.log($scope.posts[key].dateBlog);
+      }
+    }
 
     //back to top button function
     $scope.backToTop = function (){
@@ -63,6 +68,12 @@ app.controller('postCtrl', function($scope, Socialshare, postService, $location,
         var scrollTo = $('#scrollToSection').position();
         console.log('scrollTo:', scrollTo);
         $("html, body").animate({ scrollTop:  scrollTo.top}, 1000);
+    };
+    $scope.scrollToFollowSection = function (){
+      console.log('scrolling to follow section');
+      var scrollTo = $('#followSection').position();
+      console.log('scrollTo:', scrollTo);
+      $("html, body").animate({scrollTop: scrollTo.top}, 1000);
     };
 
 });
